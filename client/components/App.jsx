@@ -11,7 +11,8 @@ import './App.less';
 function getStateFromFlux() {
     return {
         isLoading: MoviesStore.isLoading(),
-        movies: MoviesStore.getMovies()
+        movies: MoviesStore.getMovies(),
+        displayContent: MoviesStore.getMovies()
     };
 }
 
@@ -40,12 +41,36 @@ const App = React.createClass({
         MoviesActions.createMovie(movieData);
     },
 
+    handleSearch (event) {
+      const searchQuery = event.target.value.toLowerCase();
+      let displayContent
+      if(event.target.id == 'name'){
+         displayContent = this.state.movies.filter(function (el) {
+              const searchValue = el.title.toLowerCase();
+            return searchValue.indexOf(searchQuery) !== -1;
+        });
+      } else {
+         displayContent = this.state.movies.filter(function (el) {
+              const searchValue = el.starring.toLowerCase();
+            return searchValue.indexOf(searchQuery) !== -1;
+        });
+      }
+
+      this.setState({ 
+          displayContent: displayContent
+      });
+  
+  },
+
     render() {
         return (
             <div className='App'>
                 <h2 className='App__header'>Movies app</h2>
                 <MovieEditor onMovieAdd={this.handleMovieAdd} />
-                <MoviesGrid movies={this.state.movies} onMovieDelete={this.handleMovieDelete} />
+                <MoviesGrid movies={this.state.displayContent} 
+                 onMovieDelete={this.handleMovieDelete}
+                 searcher={this.handleSearch}
+                />
             </div>
         );
     },

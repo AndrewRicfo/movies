@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-
 import './Movie.less';
 import './MovieModal.less';
 

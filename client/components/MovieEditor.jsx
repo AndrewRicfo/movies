@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './MovieEditor.less';
 
 const MovieEditor = React.createClass({

@@ -22234,7 +22234,8 @@
 	function getStateFromFlux() {
 	    return {
 	        isLoading: _storeMoviesStore2['default'].isLoading(),
-	        movies: _storeMoviesStore2['default'].getMovies()
+	        movies: _storeMoviesStore2['default'].getMovies(),
+	        displayContent: _storeMoviesStore2['default'].getMovies()
 	    };
 	}
 
@@ -22265,6 +22266,26 @@
 	        _actionsMoviesActions2['default'].createMovie(movieData);
 	    },
 
+	    handleSearch: function handleSearch(event) {
+	        var searchQuery = event.target.value.toLowerCase();
+	        var displayContent = undefined;
+	        if (event.target.id == 'name') {
+	            displayContent = this.state.movies.filter(function (el) {
+	                var searchValue = el.title.toLowerCase();
+	                return searchValue.indexOf(searchQuery) !== -1;
+	            });
+	        } else {
+	            displayContent = this.state.movies.filter(function (el) {
+	                var searchValue = el.starring.toLowerCase();
+	                return searchValue.indexOf(searchQuery) !== -1;
+	            });
+	        }
+
+	        this.setState({
+	            displayContent: displayContent
+	        });
+	    },
+
 	    render: function render() {
 	        return _react2['default'].createElement(
 	            'div',
@@ -22275,7 +22296,10 @@
 	                'Movies app'
 	            ),
 	            _react2['default'].createElement(_MovieEditorJsx2['default'], { onMovieAdd: this.handleMovieAdd }),
-	            _react2['default'].createElement(_MoviesGridJsx2['default'], { movies: this.state.movies, onMovieDelete: this.handleMovieDelete })
+	            _react2['default'].createElement(_MoviesGridJsx2['default'], { movies: this.state.displayContent,
+	                onMovieDelete: this.handleMovieDelete,
+	                searcher: this.handleSearch
+	            })
 	        );
 	    },
 
@@ -25432,14 +25456,14 @@
 	        return _react2['default'].createElement(
 	            'div',
 	            { className: 'MoviesGrid__wrapper' },
-	            _react2['default'].createElement(_SearchSortFieldJsx2['default'], null),
+	            _react2['default'].createElement(_SearchSortFieldJsx2['default'], { movies: this.props.movies, searcher: this.props.searcher }),
 	            _react2['default'].createElement(
 	                _reactMasonryComponent2['default'],
 	                {
 	                    className: 'MoviesGrid',
 	                    options: masonryOptions
 	                },
-	                this.props.searchName == '' ? this.props.movies.map(function (movie) {
+	                this.props.movies.map(function (movie) {
 	                    return _react2['default'].createElement(
 	                        _MovieJsx2['default'],
 	                        {
@@ -25455,7 +25479,7 @@
 	                        movie.format,
 	                        '.'
 	                    );
-	                }) : console.log("yo")
+	                })
 	            )
 	        );
 	    }
@@ -26762,7 +26786,7 @@
 
 
 	// module
-	exports.push([module.id, ".Modal {\n  position: absolute;\n  top: 25%;\n  left: 25%;\n  right: 25%;\n  bottom: 25%;\n  padding: 20px;\n  background-color: white;\n}\n.Modal:active,\n.Modal:focus {\n  outline: none;\n}\n.Overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(234, 234, 234, 0.9);\n}\n.Overlay:active,\n.Overlay:focus {\n  outline: none;\n}\n.Modal__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  color: white;\n  margin: 20px 0 20px 0;\n  float: right;\n  background-color: #aaaaaa;\n}\n.Modal__button:after {\n  clear: both;\n  display: block;\n  content: '';\n}\n.Modal__button:active {\n  outline: none;\n}\n.Modal__button:hover {\n  background-color: #b7b7b7;\n}\n", ""]);
+	exports.push([module.id, ".Modal {\n  position: absolute;\n  overflow: auto;\n  top: 25%;\n  left: 25%;\n  right: 25%;\n  bottom: 25%;\n  padding: 20px;\n  background-color: white;\n}\n.Modal:active,\n.Modal:focus {\n  outline: none;\n}\n.Overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(234, 234, 234, 0.9);\n}\n.Overlay:active,\n.Overlay:focus {\n  outline: none;\n}\n.Modal__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  color: white;\n  margin: 20px 0 20px 0;\n  float: right;\n  background-color: #aaaaaa;\n}\n.Modal__button:after {\n  clear: both;\n  display: block;\n  content: '';\n}\n.Modal__button:active {\n  outline: none;\n}\n.Modal__button:hover {\n  background-color: #b7b7b7;\n}\n", ""]);
 
 	// exports
 
@@ -34101,7 +34125,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
-	    value: true
+	  value: true
 	});
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -34113,43 +34137,27 @@
 	__webpack_require__(273);
 
 	var SearchSortField = _react2['default'].createClass({
-	    displayName: 'SearchSortField',
+	  displayName: 'SearchSortField',
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            searchName: '',
-	            searchActor: ''
-	        };
-	    },
+	  render: function render() {
 
-	    handleSearchName: function handleSearchName(e) {
-	        this.setState({ searchName: e.target.value });
-	        console.log(this.state.searchName);
-	    },
-
-	    handleSearchActor: function handleSearchActor(e) {
-	        this.setState({ searchActor: e.target.value });
-	    },
-
-	    render: function render() {
-
-	        return _react2['default'].createElement(
-	            'div',
-	            { className: 'SearchSort' },
-	            _react2['default'].createElement('input', { type: 'text', className: 'SearchSort__input', placeholder: 'Search by movie name', onChange: this.handleSearchName }),
-	            _react2['default'].createElement('input', { type: 'text', className: 'SearchSort__input', placeholder: 'Search by actor\'s name', onChange: this.handleSearchActor }),
-	            _react2['default'].createElement(
-	                'button',
-	                { className: 'SearchSort__button' },
-	                'Sort A-Z'
-	            ),
-	            _react2['default'].createElement(
-	                'button',
-	                { className: 'SearchSort__button' },
-	                'Sort default'
-	            )
-	        );
-	    }
+	    return _react2['default'].createElement(
+	      'div',
+	      { className: 'SearchSort' },
+	      _react2['default'].createElement('input', { type: 'text', className: 'SearchSort__input', id: 'name', placeholder: 'Search by movie name', onChange: this.props.searcher }),
+	      _react2['default'].createElement('input', { type: 'text', className: 'SearchSort__input', id: 'actor', placeholder: 'Search by actor\'s name', onChange: this.props.searcher }),
+	      _react2['default'].createElement(
+	        'button',
+	        { className: 'SearchSort__button' },
+	        'Sort A-Z'
+	      ),
+	      _react2['default'].createElement(
+	        'button',
+	        { className: 'SearchSort__button' },
+	        'Default order'
+	      )
+	    );
+	  }
 	});
 
 	exports['default'] = SearchSortField;
@@ -34197,7 +34205,7 @@
 
 
 	// module
-	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #f4f4f4;\n  outline: 0;\n}\n.SearchSort__input:focus {\n  outline: 0;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  background-color: #e5e5e5;\n}\n", ""]);
+	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus {\n  outline: 0;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  background-color: #e6e6e6;\n}\n", ""]);
 
 	// exports
 

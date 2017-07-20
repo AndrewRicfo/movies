@@ -1,0 +1,31 @@
+.SearchSort {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.SearchSort__input {
+	display: inline-block;
+	padding: 15px 7px;
+    font-size: 14px;
+    width: 20%;
+    resize: none;
+    margin: 10px 20px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    background-color: darken(#fff, 1%);
+    outline: 0;
+    &:focus {
+        outline: 0;
+    }
+}
+
+.SearchSort__button {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	cursor: pointer;
+    background-color: darken(#fff, 10%);
+
+	&:extend(.SearchSort__input);
+}
