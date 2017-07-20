@@ -16,8 +16,7 @@ function formatMovie(movie) {
         year: movie.year,
         format: movie.format,
         starring: movie.starring
-
-    };
+        };
 }
 
 const MoviesStore = Object.assign({}, EventEmitter.prototype, {

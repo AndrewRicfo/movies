@@ -24,6 +24,9 @@ const MoviesGrid = React.createClass({
                         <Movie
                             key={movie.id}
                             title={movie.title}
+                            year={movie.year}
+                            format={movie.format}
+                            starring={movie.starring}
                             onDelete={this.props.onMovieDelete.bind(null, movie)}
                         >
                             {movie.year}, {movie.format}.
