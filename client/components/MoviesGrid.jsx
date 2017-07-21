@@ -19,7 +19,10 @@ const MoviesGrid = React.createClass({
 
         return (
             <div className="MoviesGrid__wrapper">
-                <SearchSortField movies={this.props.movies} searcher={this.props.searcher} />
+                <SearchSortField movies={this.props.movies}
+                                 searcher={this.props.searcher}
+                                 sorter={this.props.sorter}
+                 />
                 <Masonry
                     className='MoviesGrid'
                     options={masonryOptions}

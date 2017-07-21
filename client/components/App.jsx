@@ -12,7 +12,7 @@ function getStateFromFlux() {
     return {
         isLoading: MoviesStore.isLoading(),
         movies: MoviesStore.getMovies(),
-        displayContent: MoviesStore.getMovies()
+        displayContent: MoviesStore.getMovies().slice()
     };
 }
 
@@ -41,9 +41,9 @@ const App = React.createClass({
         MoviesActions.createMovie(movieData);
     },
 
-    handleSearch (event) {
+    handleSearch(event) {
       const searchQuery = event.target.value.toLowerCase();
-      let displayContent
+      let displayContent;
       if(event.target.id == 'name'){
          displayContent = this.state.movies.filter(function (el) {
               const searchValue = el.title.toLowerCase();
@@ -54,13 +54,32 @@ const App = React.createClass({
               const searchValue = el.starring.toLowerCase();
             return searchValue.indexOf(searchQuery) !== -1;
         });
-      }
-
+      }      
       this.setState({ 
           displayContent: displayContent
       });
-  
-  },
+    },
+
+    handleSort(event) {
+      let displayContent = MoviesStore.getMovies().slice();
+
+      if(event.target.id == 'sort') {
+        displayContent.sort(function (a, b) {
+          if (a.title > b.title) {
+            return 1;
+          }
+          if (a.title < b.title) {
+            return -1;
+          }
+          return 0;
+        });
+      }
+
+      this.setState ({
+        displayContent: displayContent
+      });
+
+    },
 
     render() {
         return (
@@ -68,8 +87,9 @@ const App = React.createClass({
                 <h2 className='App__header'>Movies app</h2>
                 <MovieEditor onMovieAdd={this.handleMovieAdd} />
                 <MoviesGrid movies={this.state.displayContent} 
-                 onMovieDelete={this.handleMovieDelete}
-                 searcher={this.handleSearch}
+                            onMovieDelete={this.handleMovieDelete}
+                            searcher={this.handleSearch}
+                            sorter={this.handleSort}
                 />
             </div>
         );

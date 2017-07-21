@@ -22280,6 +22280,26 @@
 	                return searchValue.indexOf(searchQuery) !== -1;
 	            });
 	        }
+	        this.setState({
+	            displayContent: displayContent
+	        });
+	    },
+
+	    handleSort: function handleSort(event) {
+	        var displayContent = _storeMoviesStore2['default'].getMovies();
+	        console.log(this.state.movies);
+
+	        if (event.target.id == 'sort') {
+	            displayContent.sort(function (a, b) {
+	                if (a.title > b.title) {
+	                    return 1;
+	                }
+	                if (a.title < b.title) {
+	                    return -1;
+	                }
+	                return 0;
+	            });
+	        }
 
 	        this.setState({
 	            displayContent: displayContent
@@ -22298,7 +22318,8 @@
 	            _react2['default'].createElement(_MovieEditorJsx2['default'], { onMovieAdd: this.handleMovieAdd }),
 	            _react2['default'].createElement(_MoviesGridJsx2['default'], { movies: this.state.displayContent,
 	                onMovieDelete: this.handleMovieDelete,
-	                searcher: this.handleSearch
+	                searcher: this.handleSearch,
+	                sorter: this.handleSort
 	            })
 	        );
 	    },
@@ -25456,7 +25477,10 @@
 	        return _react2['default'].createElement(
 	            'div',
 	            { className: 'MoviesGrid__wrapper' },
-	            _react2['default'].createElement(_SearchSortFieldJsx2['default'], { movies: this.props.movies, searcher: this.props.searcher }),
+	            _react2['default'].createElement(_SearchSortFieldJsx2['default'], { movies: this.props.movies,
+	                searcher: this.props.searcher,
+	                sorter: this.props.sorter
+	            }),
 	            _react2['default'].createElement(
 	                _reactMasonryComponent2['default'],
 	                {
@@ -34148,12 +34172,12 @@
 	      _react2['default'].createElement('input', { type: 'text', className: 'SearchSort__input', id: 'actor', placeholder: 'Search by actor\'s name', onChange: this.props.searcher }),
 	      _react2['default'].createElement(
 	        'button',
-	        { className: 'SearchSort__button' },
+	        { id: 'sort', onClick: this.props.sorter, className: 'SearchSort__button' },
 	        'Sort A-Z'
 	      ),
 	      _react2['default'].createElement(
 	        'button',
-	        { className: 'SearchSort__button' },
+	        { id: 'unsort', onClick: this.props.sorter, className: 'SearchSort__button' },
 	        'Default order'
 	      )
 	    );
@@ -34162,6 +34186,7 @@
 
 	exports['default'] = SearchSortField;
 	module.exports = exports['default'];
+	/* may be divied into 2 components: <Search /> and <Sort /> */
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SearchSortField.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
@@ -34205,7 +34230,7 @@
 
 
 	// module
-	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus {\n  outline: 0;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  background-color: #e6e6e6;\n}\n", ""]);
+	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus {\n  outline: 0;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  background-color: #e6e6e6;\n}\n.SearchSort__button:hover {\n  background-color: #ebebeb;\n}\n", ""]);
 
 	// exports
 
