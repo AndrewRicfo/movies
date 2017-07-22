@@ -3,24 +3,30 @@ import ReactModal from 'react-modal';
 import './Movie.less';
 import './MovieModal.less';
 
-const Movie = React.createClass({
+class Movie extends React.Component {
 
-    getInitialState () {
-        return {
-            showModal: false
-        };
-  },
+ constructor(props, context) {
 
-  handleOpenModal () {
+    super(props, context);
+
+    this.state = {
+      showModal: false,
+    };
+
+  this.handleOpenModal = this.handleOpenModal.bind(this);
+  this.handleCloseModal = this.handleCloseModal.bind(this);
+
+ };
+
+  handleOpenModal() {
     this.setState({ showModal: true });
-  },
+  };
   
-  handleCloseModal () {
+  handleCloseModal() {
     this.setState({ showModal: false });
-  },
+  };
 
     render() {
-
         return (
             <div className='Movie'>
                 <span className='Movie__del-icon' onClick={this.props.onDelete}> × </span>
@@ -40,17 +46,17 @@ const Movie = React.createClass({
                   className="Modal"
                   overlayClassName="Overlay"
                 >
-                <p>Movie name: {this.props.title}</p>
-                <p>Year: {this.props.year}</p>
-                <p>Format: {this.props.format}</p>
-                <p>Starring: {this.props.starring}</p>
+                <p><b>Movie name:</b> {this.props.title}</p>
+                <p><b>Release year:</b> {this.props.year}</p>
+                <p><b>Format:</b> {this.props.format}</p>
+                <p><b>Starring:</b> {this.props.starring}</p>
                 <button className ='Modal__button' onClick={this.handleCloseModal}>Hide info</button>
                 </ReactModal>
                 </div>
             </div>
             
         );
-    }
-});
+    };
+};
 
 export default Movie;

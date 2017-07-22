@@ -1,10 +1,15 @@
 import React from 'react';
 import './SearchSortField.less';
 
-const SearchSortField = React.createClass({
+class SearchSortField extends React.Component {
+
+    constructor(props, context) {
+
+      super(props, context);
+
+    };
   
     render() {
-
         return (
             <div className='SearchSort'>
               {/* may be divied into 2 components: <Search /> and <Sort /> */}
@@ -14,7 +19,7 @@ const SearchSortField = React.createClass({
               <button id="unsort" onClick={this.props.sorter} className="SearchSort__button">Default order</button>
             </div>
         );
-    }
-});
+    };
+};
 
 export default SearchSortField;

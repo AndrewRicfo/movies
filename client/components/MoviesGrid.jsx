@@ -4,9 +4,13 @@ import Masonry from 'react-masonry-component';
 import SearchSortField from './SearchSortField.jsx';
 import './MoviesGrid.less';
 
-const MoviesGrid = React.createClass({
+class MoviesGrid extends React.Component {
 
+    constructor(props, context) {
 
+        super(props, context);
+
+    };
 
     render() {
         const masonryOptions = {
@@ -41,12 +45,12 @@ const MoviesGrid = React.createClass({
                                 {movie.year}, {movie.format}.
                             </Movie>
                         )
-                    }
+                    };
 
                 </Masonry>
             </div>
         );
-    }
-});
+    };
+};
 
 export default MoviesGrid;

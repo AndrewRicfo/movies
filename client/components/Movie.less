@@ -11,6 +11,12 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     cursor: pointer;
+    div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 660px;
+    }
 
 
     &:hover {
@@ -25,6 +31,8 @@
 .Movie__title {
     margin: 0;
     margin-bottom: 5px;
+        text-overflow: ellipsis;
+
 }
 
 .Movie__del-icon {

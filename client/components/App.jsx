@@ -16,34 +16,44 @@ function getStateFromFlux() {
     };
 }
 
-const App = React.createClass({
-    getInitialState() {
-        return getStateFromFlux();
-    },
+class App extends React.Component {
+    
+    constructor() {
+
+        super();
+
+        this.state = getStateFromFlux();
+
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleSort = this.handleSort.bind(this);
+        this._onChange = this._onChange.bind(this);
+
+    };
 
     componentWillMount() {
         MoviesActions.loadMovies();
-    },
+    };
 
     componentDidMount() {
         MoviesStore.addChangeListener(this._onChange);
-    },
+    };
 
     componentWillUnmount() {
         MoviesStore.removeChangeListener(this._onChange);
-    },
+    };
 
     handleMovieDelete(movie) {
         MoviesActions.deleteMovie(movie.id);
-    },
+    };
 
     handleMovieAdd(movieData) {
         MoviesActions.createMovie(movieData);
-    },
+    };
 
     handleSearch(event) {
       const searchQuery = event.target.value.toLowerCase();
       let displayContent;
+
       if(event.target.id == 'name'){
          displayContent = this.state.movies.filter(function (el) {
               const searchValue = el.title.toLowerCase();
@@ -58,7 +68,8 @@ const App = React.createClass({
       this.setState({ 
           displayContent: displayContent
       });
-    },
+
+    };
 
     handleSort(event) {
       let displayContent = MoviesStore.getMovies().slice();
@@ -79,7 +90,11 @@ const App = React.createClass({
         displayContent: displayContent
       });
 
-    },
+    };
+
+    _onChange() {
+        this.setState(getStateFromFlux());
+    };
 
     render() {
         return (
@@ -93,11 +108,8 @@ const App = React.createClass({
                 />
             </div>
         );
-    },
+    };
 
-    _onChange() {
-        this.setState(getStateFromFlux());
-    }
-});
+};
 
 export default App;

@@ -1,31 +1,42 @@
 import React from 'react';
 import './MovieEditor.less';
 
-const MovieEditor = React.createClass({
-    getInitialState() {
-        return {
+class MovieEditor extends React.Component {
+
+    constructor(props, context) {
+
+        super(props, context);
+
+        this.state = {
             title: '',
             year: '',
             format: '',
             starring: ''
         };
-    },
+
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
+        this.handleFormatChange = this.handleFormatChange.bind(this);
+        this.handleStarringChange = this.handleStarringChange.bind(this);
+        this.handleMovieAdd = this.handleMovieAdd.bind(this);
+
+    };
 
     handleTitleChange(event) {
         this.setState({ title: event.target.value });
-    },
+    };
 
     handleYearChange(event) {
         this.setState({ year: event.target.value });
-    },
+    };
 
     handleFormatChange(event) {
         this.setState({ format: event.target.value });
-    },
+    };
 
     handleStarringChange(event) {
         this.setState({ starring: event.target.value });
-    },
+    };
 
     handleMovieAdd() {
         const newMovie = {
@@ -37,7 +48,7 @@ const MovieEditor = React.createClass({
 
         this.props.onMovieAdd(newMovie);
         this.setState({ title: '', year: '', format: '', starring: '' });
-    },
+    };
 
     render() {
         return (
@@ -81,7 +92,7 @@ const MovieEditor = React.createClass({
                 </div>
             </div>
         );
-    }
-});
+    };
+};
 
 export default MovieEditor;
