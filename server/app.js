@@ -31,6 +31,8 @@ app.delete('/movies/:id', (req, res) => {
     db.deleteMovie(req.params.id).then(data => res.send(data));
 });
 
-const server = app.listen(serverPort, function() {
+app.listen(serverPort, function() {
     console.log(`Server is up and running on port ${serverPort}`);
 });
+
+module.exports = app
