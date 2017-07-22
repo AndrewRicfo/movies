@@ -25,7 +25,7 @@ Installing MongoDB on Windows may be painful. In this situation I recommend you 
 
 Add path to your mongodb/bin (by default C:\Program Files\MongoDB\bin\) folder to PATH environment variable.
 
-Create folder C:\data\db (the place where database will be stored). If you already have folder with database files on your computer then you need to run ```--dbpath=*path to your folder*```(without asterisk) on Step 3 of "How to start" algorithm.
+Create folder C:\data\db (the place where database will be stored). If you already have folder with database files on your computer then you need to run ```mongod --dbpath=*path to your folder*```(without asterisk) on Step 3 of "How to start" algorithm.
 
 ## How to start
 
