@@ -25,13 +25,15 @@ Installing MongoDB on Windows may be painful. In this situation I recommend you 
 
 Add path to your mongodb/bin (by default C:\Program Files\MongoDB\bin\) folder to PATH environment variable.
 
+Create folder C:\data\db (the place where database will be stored). If you already have folder with database files on your computer then you need to run ```--dbpath=*path to your folder*```(without asterisk) on Step 3 of "How to start" algorithm.
+
 ## How to start
 
 1) Clone or download this repository to your computer.
 2) Open your terminal. Navigate to project folder. Run ```npm install``` to get all the dependencies installed.
 3) Run ```mongod``` in the terminal window to start MongoDB primary daemon process. Leave the terminal opened.
 4) Open another one terminal. Navigate to folder with project. Run ```npm run server``` to start the server. Leave that terminal opened too.
-5) Open one more terminal. Navigate to folder with project. Run ```npm run webpack-devserver```.
+5) Open one more terminal. Navigate to folder with project. Run ```npm run webpack-devserver```. Again leave that terminal opened.
 6) Open ```http://localhost:8090``` in your browser.
 
 ## Tests
