@@ -17,10 +17,12 @@ Firstable you need to install [NodeJS](https://nodejs.org/uk/) if you don't have
 - For Windows: [download .msi installer](https://nodejs.org/en/download)
 - For Linux: type ```curl -L https://npmjs.org/install.sh | sh``` in terminal
 - For Mac: [download .pkg installer](https://nodejs.org/en/download) or type ```brew install node```, if you use [Homebrew](http://brew.sh/)
+
 Confirm adding nodejs folder to PATH environment variable.
 
 Then you should install [MongoDB](https://www.mongodb.com/) on your computer. Download link: https://www.mongodb.org/downloads.
 Installing MongoDB on Windows may be painful. In this situation I recommend you to follow [this guide](http://metanit.com/nosql/mongodb/1.2.php) or [this video guide](https://www.youtube.com/watch?v=1uFY60CESlM&feature=youtu.be).
+
 Add path to your mongodb/bin (by default C:\Program Files\MongoDB\bin\) folder to PATH environment variable.
 
 ## How to start
