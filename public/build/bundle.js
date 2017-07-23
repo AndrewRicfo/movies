@@ -25572,8 +25572,7 @@
 	                            movie.format,
 	                            '.'
 	                        );
-	                    }),
-	                    ';'
+	                    })
 	                )
 	            );
 	        }
@@ -34368,7 +34367,7 @@
 
 
 	// module
-	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus {\n  outline: 0;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  width: 10%;\n  background-color: #e6e6e6;\n}\n.SearchSort__button:hover {\n  background-color: #ebebeb;\n}\n", ""]);
+	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus,\n.SearchSort__input:hover {\n  outline: 0;\n  background-color: papayawhip;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  width: 10%;\n  background-color: #e6e6e6;\n}\n.SearchSort__button:hover {\n  background-color: #ebebeb;\n}\n", ""]);
 
 	// exports
 

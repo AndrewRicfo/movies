@@ -7,7 +7,7 @@ import '../models/Movie';
 const Movie = mongoose.model('Movie');
 
 export function setUpConnection() {
-    mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
+    mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`, { useMongoClient: true });
 }
 
 export function listMovies(id) {
