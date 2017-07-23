@@ -13,12 +13,16 @@ API is presented by GET, POST and DELETE requests to server.
 
 ## Installation prerequisites
 
+### NodeJS
+
 Firstable you need to install [NodeJS](https://nodejs.org/uk/) if you don't have it yet:
 - For Windows: [download .msi installer](https://nodejs.org/en/download)
 - For Linux: type ```curl -L https://npmjs.org/install.sh | sh``` in terminal
 - For Mac: [download .pkg installer](https://nodejs.org/en/download) or type ```brew install node```, if you use [Homebrew](http://brew.sh/)
 
 Confirm adding nodejs folder to PATH environment variable.
+
+### MongoDB
 
 Then you should install [MongoDB](https://www.mongodb.com/) on your computer. Download link: https://www.mongodb.org/downloads.
 Installing MongoDB on Windows may be painful. In this situation I recommend you to follow [this guide](http://metanit.com/nosql/mongodb/1.2.php) or [this video guide](https://www.youtube.com/watch?v=1uFY60CESlM&feature=youtu.be).
