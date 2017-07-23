@@ -1,10 +1,14 @@
+.pos(@x, @y) {
+  top: @y;
+  right: @x;
+  bottom: @y;
+  left: @x;
+}
+
 .Modal {
     position: absolute;
     overflow: auto; 
-    top: 25%;
-    left: 25%;
-    right: 25%;
-    bottom: 25%;
+    .pos(25%, 25%);
     padding: 20px;
     border-radius: 10px;
     border: 1px solid darken(#eaeaea, 10%);
@@ -16,10 +20,7 @@
 
 .Overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    .pos(0, 0);
     background-color: rgba(234,234,234,0.9);
     &:active, &:focus{
         outline: none;
@@ -50,5 +51,15 @@
     }
     &:hover{
         background-color: darken(#eaeaea, 20%);
+    }
+}
+
+@media all and (max-width: 750px) {
+    .pos(5%, 15%);
+}
+
+@media all and (max-width: 480px) {
+    .Modal {
+        .pos(1%, 15%);
     }
 }
