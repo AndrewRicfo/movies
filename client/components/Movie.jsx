@@ -30,7 +30,7 @@ class Movie extends React.Component {
         return (
             <div className='Movie'>
                 <span className='Movie__del-icon' onClick={this.props.onDelete}> × </span>
-                <div onClick={this.handleOpenModal}>
+                <div className='Movie__content' onClick={this.handleOpenModal}>
                 {
                     this.props.title
                     ?
