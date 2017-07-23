@@ -45,11 +45,11 @@ class MoviesGrid extends React.Component {
                                 {movie.year}, {movie.format}.
                             </Movie>
                         )
-                    };
+                    }
 
                 </Masonry>
             </div>
-        );
+        )
     };
 };
 
