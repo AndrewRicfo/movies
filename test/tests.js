@@ -1,33 +1,45 @@
-const assert = require('assert');
 const app = require('../server/app');
 const Movie = require('../server/models/Movie')
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();
+const assert = require('assert');
 
 mongoose.Promise = global.Promise;
-
 chai.use(chaiHttp);
 
-beforeEach( (done) => { 
-  Movie.remove({}, (err) => { 
-   done();         
- });     
+describe('/api/movies GET', () => {
+
+      it('should GET all the Movies', (done) => {
+
+        chai.request(app)
+        .get('/api/movies')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('array');
+          res.body.length.should.be.eql(0);
+          done();
+        });
+
+      });
+
 });
 
 
+describe('/api/movies POST', () => {
 
-describe('/GET movie', () => {
+  it('should POST a movie to the database', (done) => {
 
-  it('should GET all the Movies', (done) => {
+    let movie = new Movie({
+      title: "Movie",
+      year: "2017",
+      format: "DVD",
+      starring: "Chernyavskiy"
+    });
 
-    chai.request(app)
-    .get('/movies')
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.should.be.a('array');
-      res.body.length.should.be.eql(0);
+    movie.save().then(function() {
+      assert(movie.isNew === false);
       done();
     });
 
@@ -35,50 +47,33 @@ describe('/GET movie', () => {
 
 });
 
-describe('/POST movie', () => {
 
-  it('should POST a movie ', (done) => {
+describe('/api/movies/:id delete', () => {
 
-    let movie = {
-      title: "The Lord of the Rings",
-      year: "1995",
+  var movie;
+
+  beforeEach(function(done) {
+    movie = new Movie({
+      title: "Title",
+      year: "1111",
       format: "VHS",
-      starring: "Actor1, Actor2"
-    }
-    chai.request(app)
-    .post('/movies')
-    .send(movie)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.should.be.a('object');
-      res.body.should.have.property('__v');
-      res.body.should.have.property('title').eql('The Lord of the Rings');
-      res.body.should.have.property('year').eql("1995");
-      res.body.should.have.property('format').eql("VHS");
-      res.body.should.have.property('starring').eql("Actor1, Actor2");
-      done();
+      starring: "Ryan"
     });
 
-  });
-
-});
-
-describe('/DELETE/:id movie', () => {
+    movie.save().then(function() {
+      assert(movie.isNew === false);
+      done();
+    })
+  })
 
   it('should DELETE a movie by the given id', (done) => {
 
-    let movie = new Movie({title: "The Chronicles of Narnia", year: "2015", format: "Blu-Ray", starring: "Nonames"})
-    movie.save((err, book) => {
-      chai.request(app)
-      .delete('/movies/' + book.id)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        res.body.should.have.property('ok').eql(1);
-        res.body.should.have.property('n').eql(1);
-        done();
-      });
-    });
+   Movie.findOneAndRemove({title: 'Title'}).then(function() {
+    Movie.findOne({title: 'Title'}).then(function(result) {
+      assert(result === null);
+      done();
+    })
+   })
 
   });
 
