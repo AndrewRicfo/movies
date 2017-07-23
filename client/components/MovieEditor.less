@@ -11,10 +11,10 @@
     align-items: center;
 }
 
-.MovieEditor__input {
+input[class^='MovieEditor__input'] {
     padding: 7px;
     font-size: 14px;
-    width: 80%;
+    width: 60%;
     resize: none;
     margin: 5px;
     border: none;
@@ -26,6 +26,10 @@
     &:focus {
         outline: 0;
     }
+}
+
+input[class*='--warn'] {
+    background-color: rgb(240,160,108);
 }
 
 .MovieEditor__button {
@@ -43,8 +47,10 @@
     color: white;
 
     &:hover {
-        opacity: .9;
+        &:enabled{
+        opacity: .8;
         transition: all 100ms ease;
+        }
     }
 
     &:active {
@@ -55,5 +61,9 @@
 
     &:focus {
         outline: 0;
+    }
+
+    &:disabled{
+        background-color: #ccc;
     }
 }
