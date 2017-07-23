@@ -28,7 +28,7 @@ class MovieEditor extends React.Component {
 
     handleYearChange(event) {
         this.setState({ year: event.target.value });
-        if(!/^[0 -9]{4}$/.test(event.target.value) && event.target.value.length != 0) {
+        if(!/^(1[0-9]{3})|(20[0-1][0-9])$/.test(event.target.value) && event.target.value.length != 0) {
             event.currentTarget.className = 'MovieEditor__input--warn';
         }
         else {
