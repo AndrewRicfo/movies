@@ -69,8 +69,8 @@ class MovieEditor extends React.Component {
         this.setState({ title: '', year: '', format: '', starring: '' });
     };
 
-	handleFileUpload({files}) {
-        const file = files[0];
+	handleFileUpload(event) {
+        const file = event.target.files[0];
 
 		this.props.onMovieMultipleAdd(file);
 		this.setState({ title: '', year: '', format: '', starring: '' });
