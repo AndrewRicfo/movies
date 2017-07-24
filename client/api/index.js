@@ -11,6 +11,12 @@ export default {
         return axios.post(`${apiPrefix}/api/movies`, data);
     },
 
+    createMovieMultiple(data) {
+		const formData = new FormData();
+		formData.append('movies', data, 'movies');
+		return axios.post(`${apiPrefix}/api/movies/multiple`, formData);
+    },
+
     deleteMovie(movieId) {
         return axios.delete(`${apiPrefix}/api/movies/${movieId}`);
     }

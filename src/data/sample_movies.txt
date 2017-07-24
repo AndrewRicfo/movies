@@ -33,7 +33,7 @@ Release Year: 1979
 Format: DVD
 Stars: Jim Henson, Frank Oz, Dave Geolz, Mel Brooks, James Coburn, Charles Durning, Austin Pendleton
 
-Title: Get Shorty 
+Title: Get Shorty =
 Release Year: 1995
 Format: DVD
 Stars: John Travolta, Danny DeVito, Renne Russo, Gene Hackman, Dennis Farina
@@ -98,7 +98,7 @@ Release Year: 1970
 Format: DVD
 Stars: Donald Sutherland, Elliot Gould, Tom Skerritt, Sally Kellerman, Robert Duvall
 
-Title: The Russians Are Coming, The Russians Are Coming
+Title: The Russians Are Coming
 Release Year: 1966
 Format: VHS
 Stars: Carl Reiner, Eva Marie Saint, Alan Arkin, Brian Keith

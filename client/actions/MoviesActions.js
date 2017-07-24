@@ -34,6 +34,16 @@ const MovieActions = {
         );
     },
 
+    createMovieMultiple(movies) {
+        api.createMovieMultiple(movies)
+        .then(() =>
+            this.loadMovies()
+        )
+        .catch(err =>
+            console.error(err)
+        );
+    },
+
     deleteMovie(movieId) {
         api.deleteMovie(movieId)
         .then(() =>
