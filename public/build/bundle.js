@@ -24880,10 +24880,8 @@
 	        }
 	    }, {
 	        key: 'handleFileUpload',
-	        value: function handleFileUpload(_ref) {
-	            var files = _ref.files;
-
-	            var file = files[0];
+	        value: function handleFileUpload(event) {
+	            var file = event.target.files[0];
 
 	            this.props.onMovieMultipleAdd(file);
 	            this.setState({ title: '', year: '', format: '', starring: '' });
@@ -24996,7 +24994,7 @@
 
 
 	// module
-	exports.push([module.id, ".MovieEditor {\n  width: 100%;\n  max-width: 600px;\n  padding: 16px;\n  margin: 16px auto;\n  background-color: honeydew;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\ninput[class^='MovieEditor__input'] {\n  padding: 7px;\n  font-size: 14px;\n  width: 60%;\n  resize: none;\n  margin: 5px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  background-color: honeydew;\n  border-radius: 24px;\n  text-align: center;\n}\ninput[class^='MovieEditor__input']:focus {\n  outline: 0;\n}\ninput[class*='--warn'] {\n  background-color: #f0a06c;\n}\n.MovieEditor__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  margin: 10px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  background: #3ac569;\n  color: white;\n}\n.MovieEditor__button:hover:enabled {\n  opacity: .8;\n  transition: all 100ms ease;\n}\n.MovieEditor__button:active {\n  opacity: .75;\n  -webkit-transform: scale(0.97);\n          transform: scale(0.97);\n  transition: all 100ms ease;\n}\n.MovieEditor__button:focus {\n  outline: 0;\n}\n.MovieEditor__button:disabled {\n  background-color: #ccc;\n}\n", ""]);
+	exports.push([module.id, ".MovieEditor {\n  width: 100%;\n  max-width: 600px;\n  padding: 16px;\n  margin: 16px auto;\n  background-color: honeydew;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\ninput[class^='MovieEditor__input'] {\n  padding: 7px;\n  font-size: 14px;\n  width: 60%;\n  resize: none;\n  margin: 5px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  background-color: honeydew;\n  border-radius: 24px;\n  text-align: center;\n}\ninput[class^='MovieEditor__input']:focus {\n  outline: 0;\n}\ninput[class*='--warn'] {\n  background-color: #f0a06c;\n}\n.MovieEditor__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  margin: 10px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  background: #3ac569;\n  color: white;\n}\n.MovieEditor__button:hover:enabled {\n  opacity: .8;\n  transition: all 100ms ease;\n}\n.MovieEditor__button:active {\n  opacity: .75;\n  -webkit-transform: scale(0.97);\n          transform: scale(0.97);\n  transition: all 100ms ease;\n}\n.MovieEditor__button:focus {\n  outline: 0;\n}\n.MovieEditor__button:disabled {\n  background-color: #ccc;\n}\nlabel {\n  font-family: 'Roboto';\n  font-weight: 500;\n  font-size: 14px;\n}\n", ""]);
 
 	// exports
 
