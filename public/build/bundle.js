@@ -22199,7 +22199,7 @@
 /* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies-master 2\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -22288,6 +22288,11 @@
 	            _actionsMoviesActions2['default'].createMovie(movieData);
 	        }
 	    }, {
+	        key: 'handleMovieMultipleAdd',
+	        value: function handleMovieMultipleAdd(moviesData) {
+	            _actionsMoviesActions2['default'].createMovieMultiple(moviesData);
+	        }
+	    }, {
 	        key: 'handleSearch',
 	        value: function handleSearch(event) {
 	            var searchQuery = event.target.value.toLowerCase();
@@ -22345,7 +22350,8 @@
 	                    { className: 'App__header' },
 	                    'Movies app'
 	                ),
-	                _react2['default'].createElement(_MovieEditorJsx2['default'], { onMovieAdd: this.handleMovieAdd }),
+	                _react2['default'].createElement(_MovieEditorJsx2['default'], { onMovieAdd: this.handleMovieAdd,
+	                    onMovieMultipleAdd: this.handleMovieMultipleAdd }),
 	                _react2['default'].createElement(_MoviesGridJsx2['default'], { movies: this.state.displayContent,
 	                    onMovieDelete: this.handleMovieDelete,
 	                    searcher: this.handleSearch,
@@ -22363,7 +22369,7 @@
 	exports['default'] = App;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "App.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "App.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 185 */
@@ -23175,11 +23181,21 @@
 	        });
 	    },
 
-	    deleteMovie: function deleteMovie(movieId) {
+	    createMovieMultiple: function createMovieMultiple(movies) {
 	        var _this2 = this;
 
-	        _api2['default'].deleteMovie(movieId).then(function () {
+	        _api2['default'].createMovieMultiple(movies).then(function () {
 	            return _this2.loadMovies();
+	        })['catch'](function (err) {
+	            return console.error(err);
+	        });
+	    },
+
+	    deleteMovie: function deleteMovie(movieId) {
+	        var _this3 = this;
+
+	        _api2['default'].deleteMovie(movieId).then(function () {
+	            return _this3.loadMovies();
 	        })['catch'](function (err) {
 	            return console.error(err);
 	        });
@@ -23214,6 +23230,12 @@
 
 	    createMovie: function createMovie(data) {
 	        return _axios2['default'].post(_etcConfigJson.apiPrefix + '/api/movies', data);
+	    },
+
+	    createMovieMultiple: function createMovieMultiple(data) {
+	        var formData = new FormData();
+	        formData.append('movies', data, 'movies');
+	        return _axios2['default'].post(_etcConfigJson.apiPrefix + '/api/movies/multiple', formData);
 	    },
 
 	    deleteMovie: function deleteMovie(movieId) {
@@ -24761,7 +24783,7 @@
 /* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies-master 2\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -24805,6 +24827,7 @@
 	        this.handleFormatChange = this.handleFormatChange.bind(this);
 	        this.handleStarringChange = this.handleStarringChange.bind(this);
 	        this.handleMovieAdd = this.handleMovieAdd.bind(this);
+	        this.handleFileUpload = this.handleFileUpload.bind(this);
 	    }
 
 	    _createClass(MovieEditor, [{
@@ -24816,16 +24839,31 @@
 	        key: 'handleYearChange',
 	        value: function handleYearChange(event) {
 	            this.setState({ year: event.target.value });
+	            if (!/^(1[0-9]{3})|(20[0-1][0-9])$/.test(event.target.value) && event.target.value.length != 0) {
+	                event.currentTarget.className = 'MovieEditor__input--warn';
+	            } else {
+	                event.currentTarget.className = 'MovieEditor__input';
+	            }
 	        }
 	    }, {
 	        key: 'handleFormatChange',
 	        value: function handleFormatChange(event) {
 	            this.setState({ format: event.target.value });
+	            if (!/^(VHS)$|^(DVD)$|^(Blu-Ray)$/i.test(event.target.value) && event.target.value.length != 0) {
+	                event.currentTarget.className = 'MovieEditor__input--warn';
+	            } else {
+	                event.currentTarget.className = 'MovieEditor__input';
+	            }
 	        }
 	    }, {
 	        key: 'handleStarringChange',
 	        value: function handleStarringChange(event) {
 	            this.setState({ starring: event.target.value });
+	            if (/[^a-z,-\s]/i.test(event.target.value) && event.target.value.length != 0) {
+	                event.currentTarget.className = 'MovieEditor__input--warn';
+	            } else {
+	                event.currentTarget.className = 'MovieEditor__input';
+	            }
 	        }
 	    }, {
 	        key: 'handleMovieAdd',
@@ -24838,6 +24876,16 @@
 	            };
 
 	            this.props.onMovieAdd(newMovie);
+	            this.setState({ title: '', year: '', format: '', starring: '' });
+	        }
+	    }, {
+	        key: 'handleFileUpload',
+	        value: function handleFileUpload(_ref) {
+	            var files = _ref.files;
+
+	            var file = files[0];
+
+	            this.props.onMovieMultipleAdd(file);
 	            this.setState({ title: '', year: '', format: '', starring: '' });
 	        }
 	    }, {
@@ -24856,14 +24904,15 @@
 	                _react2['default'].createElement('input', {
 	                    type: 'text',
 	                    className: 'MovieEditor__input',
-	                    placeholder: 'Enter year',
+	                    placeholder: 'Enter release year(4 numbers)',
 	                    value: this.state.year,
-	                    onChange: this.handleYearChange
+	                    onChange: this.handleYearChange,
+	                    onBlur: this.handleYearChange
 	                }),
 	                _react2['default'].createElement('input', {
 	                    type: 'text',
 	                    className: 'MovieEditor__input',
-	                    placeholder: 'Enter format',
+	                    placeholder: 'Format: VHS, DVD, Blu-Ray',
 	                    value: this.state.format,
 	                    onChange: this.handleFormatChange
 	                }),
@@ -24881,11 +24930,17 @@
 	                        'button',
 	                        {
 	                            className: 'MovieEditor__button',
-	                            disabled: !this.state.title || !this.state.year || !this.state.format || !this.state.starring,
+	                            disabled: !this.state.title || !/^[0 -9]{4}$/.test(this.state.year) || !/^(VHS)$|^(DVD)$|^(Blu-Ray)$/i.test(this.state.format) || /[^a-z,\s]/i.test(this.state.starring) || !this.state.starring,
 	                            onClick: this.handleMovieAdd
 	                        },
-	                        'Add'
+	                        'Add movie'
 	                    )
+	                ),
+	                _react2['default'].createElement(
+	                    'label',
+	                    null,
+	                    'Import from .txt file: ',
+	                    _react2['default'].createElement('input', { type: 'file', onChange: this.handleFileUpload })
 	                )
 	            );
 	        }
@@ -24899,7 +24954,7 @@
 	exports['default'] = MovieEditor;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MovieEditor.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MovieEditor.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 222 */
@@ -24941,7 +24996,7 @@
 
 
 	// module
-	exports.push([module.id, ".MovieEditor {\n  width: 100%;\n  max-width: 600px;\n  padding: 16px;\n  margin: 16px auto;\n  background-color: honeydew;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n.MovieEditor__input {\n  padding: 7px;\n  font-size: 14px;\n  width: 80%;\n  resize: none;\n  margin: 5px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  background-color: honeydew;\n  border-radius: 24px;\n  text-align: center;\n}\n.MovieEditor__input:focus {\n  outline: 0;\n}\n.MovieEditor__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  margin: 10px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  background: #3ac569;\n  color: white;\n}\n.MovieEditor__button:hover {\n  opacity: .9;\n  transition: all 100ms ease;\n}\n.MovieEditor__button:active {\n  opacity: .75;\n  -webkit-transform: scale(0.97);\n          transform: scale(0.97);\n  transition: all 100ms ease;\n}\n.MovieEditor__button:focus {\n  outline: 0;\n}\n", ""]);
+	exports.push([module.id, ".MovieEditor {\n  width: 100%;\n  max-width: 600px;\n  padding: 16px;\n  margin: 16px auto;\n  background-color: honeydew;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\ninput[class^='MovieEditor__input'] {\n  padding: 7px;\n  font-size: 14px;\n  width: 60%;\n  resize: none;\n  margin: 5px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  background-color: honeydew;\n  border-radius: 24px;\n  text-align: center;\n}\ninput[class^='MovieEditor__input']:focus {\n  outline: 0;\n}\ninput[class*='--warn'] {\n  background-color: #f0a06c;\n}\n.MovieEditor__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  margin: 10px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  background: #3ac569;\n  color: white;\n}\n.MovieEditor__button:hover:enabled {\n  opacity: .8;\n  transition: all 100ms ease;\n}\n.MovieEditor__button:active {\n  opacity: .75;\n  -webkit-transform: scale(0.97);\n          transform: scale(0.97);\n  transition: all 100ms ease;\n}\n.MovieEditor__button:focus {\n  outline: 0;\n}\n.MovieEditor__button:disabled {\n  background-color: #ccc;\n}\n", ""]);
 
 	// exports
 
@@ -25486,7 +25541,7 @@
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies-master 2\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -25586,13 +25641,13 @@
 	exports['default'] = MoviesGrid;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MoviesGrid.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MoviesGrid.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies-master 2\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -25661,7 +25716,7 @@
 	                ),
 	                _react2['default'].createElement(
 	                    'div',
-	                    { onClick: this.handleOpenModal },
+	                    { className: 'Movie__content', onClick: this.handleOpenModal },
 	                    this.props.title ? _react2['default'].createElement(
 	                        'h4',
 	                        { className: 'Movie__title' },
@@ -25744,7 +25799,7 @@
 	exports['default'] = Movie;
 	module.exports = exports['default'];
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Movie.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "Movie.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 229 */
@@ -26882,7 +26937,7 @@
 
 
 	// module
-	exports.push([module.id, ".Movie {\n  width: 700px;\n  height: auto;\n  float: left;\n  background-color: white;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  padding: 10px;\n  margin-bottom: 20px;\n  transition: box-shadow 0.3s;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n  cursor: pointer;\n}\n.Movie div {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 660px;\n}\n.Movie:hover {\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);\n}\n.Movie:hover .Movie__del-icon {\n  display: block;\n}\n.Movie__title {\n  margin: 0;\n  margin-bottom: 5px;\n  text-overflow: ellipsis;\n}\n.Movie__del-icon {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  display: none;\n  color: rgba(0, 0, 0, 0.6);\n  cursor: pointer;\n}\n", ""]);
+	exports.push([module.id, ".Movie {\n  width: 700px;\n  height: auto;\n  float: left;\n  background-color: white;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  border-radius: 2px;\n  margin-bottom: 20px;\n  transition: box-shadow 0.3s;\n  white-space: pre-wrap;\n  word-wrap: break-word;\n  cursor: pointer;\n}\n.Movie div {\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 660px;\n}\n.Movie:hover {\n  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);\n}\n.Movie:hover .Movie__del-icon {\n  display: block;\n}\n.Movie__content {\n  padding: 10px;\n}\n.Movie__title {\n  margin: 0;\n  margin-bottom: 5px;\n  text-overflow: ellipsis;\n}\n.Movie__del-icon {\n  position: absolute;\n  top: 5px;\n  right: 5px;\n  display: none;\n  color: rgba(0, 0, 0, 0.6);\n  cursor: pointer;\n}\n@media all and (max-width: 750px) {\n  .Movie {\n    width: 80%;\n    left: 50% !important;\n    -webkit-transform: translateX(-50%);\n            transform: translateX(-50%);\n  }\n}\n", ""]);
 
 	// exports
 
@@ -26927,7 +26982,7 @@
 
 
 	// module
-	exports.push([module.id, ".Modal {\n  position: absolute;\n  overflow: auto;\n  top: 25%;\n  left: 25%;\n  right: 25%;\n  bottom: 25%;\n  padding: 20px;\n  border-radius: 10px;\n  border: 1px solid #d1d1d1;\n  background-color: white;\n}\n.Modal:active,\n.Modal:focus {\n  outline: none;\n}\n.Overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(234, 234, 234, 0.9);\n}\n.Overlay:active,\n.Overlay:focus {\n  outline: none;\n}\n.Modal__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  color: white;\n  margin: 20px 0 20px 0;\n  float: right;\n  background-color: #aaaaaa;\n}\n.Modal__button:after {\n  clear: both;\n  display: block;\n  content: '';\n}\n.Modal__button:active {\n  outline: none;\n}\n.Modal__button:hover {\n  background-color: #b7b7b7;\n}\n", ""]);
+	exports.push([module.id, ".Modal {\n  position: absolute;\n  overflow: auto;\n  top: 25%;\n  right: 25%;\n  bottom: 25%;\n  left: 25%;\n  padding: 20px;\n  border-radius: 10px;\n  border: 1px solid #d1d1d1;\n  background-color: white;\n}\n.Modal:active,\n.Modal:focus {\n  outline: none;\n}\n.Overlay {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  background-color: rgba(234, 234, 234, 0.9);\n}\n.Overlay:active,\n.Overlay:focus {\n  outline: none;\n}\n.Modal__button {\n  border: 0 none;\n  border-radius: 24px;\n  padding: 10px 15px;\n  cursor: pointer;\n  line-height: 1.3;\n  font-size: 15px;\n  text-transform: uppercase;\n  font-weight: 500;\n  transition: all 100ms ease-in-out;\n  color: white;\n  margin: 20px 0 20px 0;\n  float: right;\n  background-color: #aaaaaa;\n}\n.Modal__button:after {\n  clear: both;\n  display: block;\n  content: '';\n}\n.Modal__button:active {\n  outline: none;\n}\n.Modal__button:hover {\n  background-color: #b7b7b7;\n}\n@media all and (max-width: 750px) {\n  top: 15%;\n  right: 5%;\n  bottom: 15%;\n  left: 5%;\n}\n@media all and (max-width: 480px) {\n  .Modal {\n    top: 15%;\n    right: 1%;\n    bottom: 15%;\n    left: 1%;\n  }\n}\n", ""]);
 
 	// exports
 
@@ -34261,7 +34316,7 @@
 /* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\test\\movies-master 2\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
@@ -34325,7 +34380,7 @@
 	module.exports = exports['default'];
 	/* may be divied into 2 components: <Search /> and <Sort /> */
 
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SearchSortField.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\test\\movies-master 2\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SearchSortField.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 273 */
@@ -34367,7 +34422,7 @@
 
 
 	// module
-	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus,\n.SearchSort__input:hover {\n  outline: 0;\n  background-color: papayawhip;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  width: 10%;\n  background-color: #e6e6e6;\n}\n.SearchSort__button:hover {\n  background-color: #ebebeb;\n}\n", ""]);
+	exports.push([module.id, ".SearchSort {\n  width: 100%;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.SearchSort__input,\n.SearchSort__button {\n  display: inline-block;\n  padding: 15px 7px;\n  font-size: 14px;\n  width: 20%;\n  resize: none;\n  margin: 10px 20px 20px;\n  border: none;\n  border-radius: 5px;\n  font-weight: 500;\n  text-align: center;\n  background-color: #fcfcfc;\n  outline: 0;\n}\n.SearchSort__input:focus,\n.SearchSort__input:hover {\n  outline: 0;\n  background-color: papayawhip;\n}\n.SearchSort__button {\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);\n  cursor: pointer;\n  width: 10%;\n  background-color: #e6e6e6;\n}\n.SearchSort__button:hover {\n  background-color: #ebebeb;\n}\n@media all and (max-width: 850px) {\n  .SearchSort__input,\n  .SearchSort__button {\n    width: 50%;\n  }\n  .SearchSort__button {\n    width: 15%;\n  }\n  .SearchSort {\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: column;\n            flex-flow: column;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center;\n  }\n}\n@media all and (max-width: 480px) {\n  .SearchSort__input,\n  .SearchSort__button {\n    width: 80%;\n  }\n  .SearchSort__button {\n    width: 50%;\n  }\n}\n", ""]);
 
 	// exports
 
@@ -34412,7 +34467,7 @@
 
 
 	// module
-	exports.push([module.id, ".MoviesGrid {\n  margin: 0 auto;\n}\n.MoviesGrid__wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n", ""]);
+	exports.push([module.id, ".MoviesGrid {\n  margin: 0 auto;\n}\n.MoviesGrid__wrapper {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: column;\n          flex-flow: column;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n@media all and (max-width: 750px) {\n  .MoviesGrid {\n    width: 90vw !important;\n  }\n}\n", ""]);
 
 	// exports
 
