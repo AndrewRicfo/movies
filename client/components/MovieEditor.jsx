@@ -19,6 +19,7 @@ class MovieEditor extends React.Component {
         this.handleFormatChange = this.handleFormatChange.bind(this);
         this.handleStarringChange = this.handleStarringChange.bind(this);
         this.handleMovieAdd = this.handleMovieAdd.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
 
     };
 
@@ -48,7 +49,7 @@ class MovieEditor extends React.Component {
 
     handleStarringChange(event) {
         this.setState({ starring: event.target.value });
-        if(/[^a-z,\s]/i.test(event.target.value) && event.target.value.length != 0) {
+        if(/[^a-z,-\s]/i.test(event.target.value) && event.target.value.length != 0) {
             event.currentTarget.className = 'MovieEditor__input--warn';
         }
         else {
@@ -66,6 +67,13 @@ class MovieEditor extends React.Component {
 
         this.props.onMovieAdd(newMovie);
         this.setState({ title: '', year: '', format: '', starring: '' });
+    };
+
+	handleFileUpload({files}) {
+        const file = files[0];
+
+		this.props.onMovieMultipleAdd(file);
+		this.setState({ title: '', year: '', format: '', starring: '' });
     };
 
     render() {
@@ -109,6 +117,7 @@ class MovieEditor extends React.Component {
                         Add movie
                     </button>
                 </div>
+                <label>Import from .txt file: <input type="file" onChange={this.handleFileUpload} /></label>
             </div>
         );
     };

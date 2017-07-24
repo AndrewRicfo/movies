@@ -50,6 +50,10 @@ class App extends React.Component {
         MoviesActions.createMovie(movieData);
     };
 
+    handleMovieMultipleAdd(moviesData) {
+        MoviesActions.createMovieMultiple(moviesData);
+    };
+
     handleSearch(event) {
       const searchQuery = event.target.value.toLowerCase();
       let displayContent;
@@ -100,7 +104,8 @@ class App extends React.Component {
         return (
             <div className='App'>
                 <h2 className='App__header'>Movies app</h2>
-                <MovieEditor onMovieAdd={this.handleMovieAdd} />
+                <MovieEditor onMovieAdd={this.handleMovieAdd}
+                            onMovieMultipleAdd={this.handleMovieMultipleAdd}/>
                 <MoviesGrid movies={this.state.displayContent} 
                             onMovieDelete={this.handleMovieDelete}
                             searcher={this.handleSearch}
