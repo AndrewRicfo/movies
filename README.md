@@ -36,8 +36,8 @@ Create folder C:\data\db (the place where database will be stored). If you alrea
 
 1) Clone or download this repository to your computer.
 2) Open your terminal. Navigate to local repository folder. Run ```npm install``` to get all the dependencies installed.
-3) Run ```npm run server``` to start the server. Leave that terminal opened.
-4) Open another terminal. Run ```mongod``` in the terminal window to start MongoDB primary daemon process. Leave the terminal opened too.
+3) Run ```mongod``` in the terminal window to start MongoDB primary daemon process. Leave the terminal opened.
+4) Open another terminal. Navigate to repository folder. Run ```npm run server``` to start the server. Leave that terminal opened too.
 5) Open ```http://localhost:3000``` in your browser.
 
 ## Tests
