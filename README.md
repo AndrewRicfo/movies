@@ -9,7 +9,7 @@ This single page application has been created to learn ReactJS basics and gain e
 API is presented by GET, POST and DELETE requests to server.
 - ```get http://localhost:3000/api/movies``` - get the list of all movies in the database;
 - ```post http://localhost:3000/api/movies``` and the body of the request is {"title":"The Lord of the Rings","year":"2001","format":"DVD","starring":"Elijah Wood, Ian McKellen"} - add movie to the database;
-- ```pots http://localhost:3000/api/movies/multiple``` and the body should contain FormData object - import movies from .txt file.
+- ```post http://localhost:3000/api/movies/multiple``` and the body should contain FormData object - import movies from .txt file.
 - ```delete http://localhost:3000/api/movies/:id``` and the body is {"_id":"59735e426030cc1070c2dba0"}  - delete movie by given id 
 
 ## Installation prerequisites
@@ -36,8 +36,8 @@ Create folder C:\data\db (the place where database will be stored). If you alrea
 
 1) Clone or download this repository to your computer.
 2) Open your terminal. Navigate to local repository folder. Run ```npm install``` to get all the dependencies installed.
-3) Run ```mongod``` in the terminal window to start MongoDB primary daemon process. Leave the terminal opened.
-4) Open another terminal. Navigate to repository folder. Run ```npm run server``` to start the server. Leave that terminal opened too.
+3) Open another terminal. Navigate to repository folder. Run ```npm run server``` to start the server. Leave the terminal opened.
+4) Run ```mongod``` in the terminal window to start MongoDB primary daemon process. Leave that terminal opened too.
 5) Open ```http://localhost:3000``` in your browser.
 
 ## Tests
